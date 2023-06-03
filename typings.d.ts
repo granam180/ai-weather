@@ -18,7 +18,9 @@ interface Daily {
   uv_index_clear_sky_max: [number];
   uv_index_max: [number];
   weathercode: [number];
-  precipitation_probability_max: [number]
+  precipitation_probability_max: [number];
+  precipitation_sum: [number];
+  rain_sum: [number];
 }
 
 interface DailyUnits {
@@ -32,7 +34,9 @@ interface DailyUnits {
   uv_index_clear_sky_max: string;
   uv_index_max: string;
   weathercode: string;
-  precipitation_probability_max: string
+  precipitation_probability_max: string;
+  precipitation_sum: string;
+  rain_sum: string
 }
 
 interface Hourly {
@@ -82,5 +86,5 @@ interface Root {
   utc_offset_seconds: number;
   temperature_unit: string;
   // forecast_days: string;
-  // windspeed_unit: string
+  // windspeed_unit: string;
 }

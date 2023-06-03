@@ -92,13 +92,13 @@ function InformationPanel({ city, lat, long, results }: Props) {
     time: Number(hour),
     "Feels like": results?.hourly.apparent_temperature?.[currentHour + i],
     "Tomorrow's Max": results?.hourly.apparent_temperature?.[currentHour + i] + 24,
-    "Day Two's Max": results?.daily.apparent_temperature_max?.[currentHour] + 48,
-    "Day Three's Max": results?.daily.apparent_temperature_max?.[currentHour] + 73,
-    "Day Four's Max": results?.daily.apparent_temperature_max?.[currentHour] + 97,
+    "Day Two's Max": results?.daily.apparent_temperature_max?.[currentHour + i] + 48,
+    "Day Three's Max": results?.daily.apparent_temperature_max?.[currentHour + i] + 73,
+    "Day Four's Max": results?.daily.apparent_temperature_max?.[currentHour + i] + 97,
     "Tomorrow's Min": results?.daily.apparent_temperature_min?.[currentHour + i] + 24,
-    "Day Two's Min": results?.daily.apparent_temperature_min?.[currentHour] + 24,
-    "Day Three's Min": results?.daily.apparent_temperature_min?.[currentHour] + 73,
-    "Day Four's Min": results?.daily.apparent_temperature_min?.[currentHour] + 97, 
+    "Day Two's Min": results?.daily.apparent_temperature_min?.[currentHour + i] + 24,
+    "Day Three's Min": results?.daily.apparent_temperature_min?.[currentHour + i] + 73,
+    "Day Four's Min": results?.daily.apparent_temperature_min?.[currentHour + i] + 97, 
     "Tomorrow's Rain": results?.daily.precipitation_probability_max?.[currentHour + i] + 24,   
     "Day Two's Rain": results?.daily.precipitation_probability_max?.[currentHour + i] + 48, 
     "Day Three's Rain": results?.daily.precipitation_probability_max?.[currentHour + i] + 73, 
@@ -221,7 +221,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
           <div className="flex-1 flex justify-between items-center">
             <p className="font-extralight">Chance of rain</p>
             <p className="text-2xl">
-              {results.daily.precipitation_probability_max[0].toFixed(0)}%
+              {results.daily.precipitation_probability_max[0].toFixed(1)}%
             </p>
           </div>
         </div>

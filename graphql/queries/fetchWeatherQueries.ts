@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 const fetchWeatherQuery = gql`
   query MyQuery(
     $current_weather: String
-    $daily: String = "weathercode,precipitation_probability_max,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max"
+    $daily: String = "weathercode,precipitation_probability_max,precipitation_sum,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max"
     $hourly: String = "temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,windgusts_10m,uv_index,uv_index_clear_sky"
     $latitude: String!
     $longitude: String!
@@ -65,6 +65,9 @@ const fetchWeatherQuery = gql`
         windgusts_10m
       }
       daily_units {
+        precipitation_probability_max
+        precipitation_sum
+        rain_sum        
         apparent_temperature_max
         apparent_temperature_min
         sunrise
@@ -75,9 +78,11 @@ const fetchWeatherQuery = gql`
         uv_index_clear_sky_max
         uv_index_max
         weathercode
-        precipitation_probability_max
       }
       daily {
+        precipitation_probability_max
+        precipitation_sum
+        rain_sum        
         apparent_temperature_max
         apparent_temperature_min
         sunrise
@@ -88,7 +93,6 @@ const fetchWeatherQuery = gql`
         uv_index_clear_sky_max
         uv_index_max
         weathercode
-        precipitation_probability_max
       }
       current_weather {
         is_day
