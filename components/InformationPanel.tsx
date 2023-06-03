@@ -69,6 +69,27 @@ function InformationPanel({ city, lat, long, results }: Props) {
     hour12: true,
   });
 
+  const dayEight = new Date();
+  dayEight.setDate(dayEight.getDate() + 6);
+
+  const dayEightFormatted = dayEight.toLocaleDateString("en-US", {
+    hour12: true,
+  });
+
+  const dayNine = new Date();
+  dayNine.setDate(dayNine.getDate() + 6);
+
+  const dayNineFormatted = dayNine.toLocaleDateString("en-US", {
+    hour12: true,
+  });
+
+  const dayTen = new Date();
+  dayTen.setDate(dayTen.getDate() + 6);
+
+  const dayTenFormatted = dayTen.toLocaleDateString("en-US", {
+    hour12: true,
+  });
+
   /**
    * To loop through the hours of the day correctly and display the 
    * current "Feels like" temperature, you can modify the code as follows:
@@ -92,24 +113,33 @@ function InformationPanel({ city, lat, long, results }: Props) {
     time: Number(hour),
     "Feels like": results?.hourly.apparent_temperature?.[currentHour + i],
     "Current weather": results?.hourly.temperature_2m?.[currentHour + i],
-    "Tomorrows Max": results?.daily.temperature_2m_max?.[i + 1],
-    "Day Twos Max": results?.daily.temperature_2m_max?.[i + 2],
-    "Day Threes Max": results?.daily.temperature_2m_max?.[i + 3],
-    "Day Fours Max": results?.daily.temperature_2m_max?.[i + 4],
-    "Day Fives Max": results?.daily.temperature_2m_max?.[i + 5],
-    "Day Sixs Max": results?.daily.temperature_2m_max?.[i + 6],
-    "Tomorrows Min": results?.daily.temperature_2m_min?.[i + 1],
-    "Day Twos Min": results?.daily.temperature_2m_min?.[i + 2],
-    "Day Threes Min": results?.daily.temperature_2m_min?.[i + 3],
-    "Day Fours Min": results?.daily.temperature_2m_min?.[i + 4],
-    "Day Fives Min": results?.daily.temperature_2m_min?.[i + 5],
-    "Day Sixs Min": results?.daily.temperature_2m_min?.[i + 6],
-    "Tomorrows Rain": results?.daily.precipitation_probability_max?.[i + 1],  
-    "Day Twos Rain": results?.daily.precipitation_probability_max?.[i + 2], 
-    "Day Threes Rain": results?.daily.precipitation_probability_max?.[i + 3], 
-    "Day Fours Rain": results?.daily.precipitation_probability_max?.[i + 4],
-    "Day Fives Rain": results?.daily.precipitation_probability_max?.[i + 5], 
-    "Day Sixs Rain": results?.daily.precipitation_probability_max?.[i + 6],
+    "Tomorrow Max": results?.daily.temperature_2m_max?.[i + 1],
+    "Day Three Max": results?.daily.temperature_2m_max?.[i + 2],
+    "Day Four Max": results?.daily.temperature_2m_max?.[i + 3],
+    "Day Five Max": results?.daily.temperature_2m_max?.[i + 4],
+    "Day Six Max": results?.daily.temperature_2m_max?.[i + 5],
+    "Day Seven Max": results?.daily.temperature_2m_max?.[i + 6],
+    "Day Eight Max": results?.daily.temperature_2m_max?.[i + 7],
+    "Day Nine Max": results?.daily.temperature_2m_max?.[i + 8],
+    "Day Ten Max": results?.daily.temperature_2m_max?.[i + 9],
+    "Tomorrow Min": results?.daily.temperature_2m_min?.[i + 1],
+    "Day Three Min": results?.daily.temperature_2m_min?.[i + 2],
+    "Day Four Min": results?.daily.temperature_2m_min?.[i + 3],
+    "Day Five Min": results?.daily.temperature_2m_min?.[i + 4],
+    "Day Six Min": results?.daily.temperature_2m_min?.[i + 5],
+    "Day Seven Min": results?.daily.temperature_2m_min?.[i + 6],
+    "Day Eight Min": results?.daily.temperature_2m_min?.[i + 7],
+    "Day Nine Min": results?.daily.temperature_2m_min?.[i + 8],
+    "Day Ten Min": results?.daily.temperature_2m_min?.[i + 9],
+    "Tomorrow Rain": results?.daily.precipitation_probability_max?.[i + 1],  
+    "Day Three Rain": results?.daily.precipitation_probability_max?.[i + 2], 
+    "Day Four Rain": results?.daily.precipitation_probability_max?.[i + 3], 
+    "Day Five Rain": results?.daily.precipitation_probability_max?.[i + 4],
+    "Day Six Rain": results?.daily.precipitation_probability_max?.[i + 5], 
+    "Day Seven Rain": results?.daily.precipitation_probability_max?.[i + 6],
+    "Day Eight Rain": results?.daily.precipitation_probability_max?.[i + 7],
+    "Day Nine Rain": results?.daily.precipitation_probability_max?.[i + 8],
+    "Day Ten Rain": results?.daily.precipitation_probability_max?.[i + 9],
     
   }));
   
@@ -173,10 +203,10 @@ function InformationPanel({ city, lat, long, results }: Props) {
               {data[0]["Current weather"].toFixed(1)}°F
             </p>
 
-            <p className="text-right font-extralight text-sm md:text-lg">
+            <p className="text-right font-extralight text-xs md:text-lg">
               {weatherCodeToString[results.current_weather.weathercode].label}
             </p>
-            <div className="flex-1">
+            <div className="md:flex-1 text-right">
             <p className="text-xs">
               {/* update the line that displays the "Feels like" temperature 
                   to use the appropriate value from the data array */}
@@ -250,110 +280,218 @@ function InformationPanel({ city, lat, long, results }: Props) {
         <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
           <div className="flex-1 flex justify-between items-center text-xs">
             <h2 className="text-base">{tomorrowFormatted}</h2>
-            <p className="font-extralight">Max:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Tomorrows Max"].toFixed(1)}°F
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Tomorrow Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Tomorrow Min"].toFixed(1)}°F
             </p>
-            <p className="font-extralight">Min:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Tomorrows Min"].toFixed(1)}°F
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Tomorrow Rain"].toFixed(1)}%
             </p>
-            <p className="font-extralight">Rain:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Tomorrows Rain"].toFixed(1)}%
-            </p>
+            </div>
           </div>
         </div>
 
         <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
           <div className="flex-1 flex justify-between items-center text-xs">
             <h2 className="text-base">{dayThreeFormatted}</h2>
-            <p className="font-extralight">Max:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Twos Max"].toFixed(1)}°F
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Three Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Three Min"].toFixed(1)}°F
             </p>
-            <p className="font-extralight">Min:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Twos Min"].toFixed(1)}°F
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Three Rain"].toFixed(1)}%
             </p>
-            <p className="font-extralight">Rain:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Twos Rain"].toFixed(1)}%
-            </p>
+            </div>
           </div>
         </div>
 
         <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
           <div className="flex-1 flex justify-between items-center text-xs">
             <h2 className="text-base">{dayFourFormatted}</h2>
-            <p className="font-extralight">Max:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Threes Max"].toFixed(1)}°F
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Four Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Four Min"].toFixed(1)}°F
             </p>
-            <p className="font-extralight">Min:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Threes Min"].toFixed(1)}°F
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Four Rain"].toFixed(1)}%
             </p>
-            <p className="font-extralight">Rain:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Threes Rain"].toFixed(1)}%
-            </p>
+            </div>
           </div>
         </div>
 
         <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
           <div className="flex-1 flex justify-between items-center text-xs">
             <h2 className="text-base">{dayFiveFormatted}</h2>
-            <p className="font-extralight">Max:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Fours Max"].toFixed(1)}°F
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Five Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Five Min"].toFixed(1)}°F
             </p>
-            <p className="font-extralight">Min:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Fours Min"].toFixed(1)}°F
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Five Rain"].toFixed(1)}%
             </p>
-            <p className="font-extralight">Rain:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Fours Rain"].toFixed(1)}%
-            </p>
+            </div>
           </div>
         </div>
 
         <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
           <div className="flex-1 flex justify-between items-center text-xs">
             <h2 className="text-base">{daySixFormatted}</h2>
-            <p className="font-extralight">Max:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Fives Max"].toFixed(1)}°F
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Six Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Six Min"].toFixed(1)}°F
             </p>
-            <p className="font-extralight">Min:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Fives Min"].toFixed(1)}°F
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Six Rain"].toFixed(1)}%
             </p>
-            <p className="font-extralight">Rain:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Fives Rain"].toFixed(1)}%
-            </p>
+            </div>
           </div>
         </div>
 
         <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
           <div className="flex-1 flex justify-between items-center text-xs">
             <h2 className="text-base">{daySevenFormatted}</h2>
-            <p className="font-extralight">Max:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Sixs Max"].toFixed(1)}°F
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Seven Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Seven Min"].toFixed(1)}°F
             </p>
-            <p className="font-extralight">Min:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Sixs Min"].toFixed(1)}°F
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Seven Rain"].toFixed(1)}%
             </p>
-            <p className="font-extralight">Rain:</p>
-            <p className="uppercase font-semibold">
-            {data[0]["Day Sixs Rain"].toFixed(1)}%
-            </p>
+            </div>
           </div>
         </div>
+{/* 
+        <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
+          <div className="flex-1 flex justify-between items-center text-xs">
+            <h2 className="text-base">{dayEightFormatted}</h2>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Eight Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Eight Min"].toFixed(1)}°F
+            </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Eight Rain"].toFixed(1)}%
+            </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
+          <div className="flex-1 flex justify-between items-center text-xs">
+            <h2 className="text-base">{dayNineFormatted}</h2>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Nine Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Nine Min"].toFixed(1)}°F
+            </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Nine Rain"].toFixed(1)}%
+            </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
+          <div className="flex-1 flex justify-between items-center text-xs">
+            <h2 className="text-base">{dayTenFormatted}</h2>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Max:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Ten Max"].toFixed(1)}°F
+              </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Min:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Ten Min"].toFixed(1)}°F
+            </p>
+            </div>
+            <div className="text-center flex md:flex-row flex-col">
+              <p className="font-extralight md:mr-3">Rain:</p>
+              <p className="uppercase font-semibold">
+              {data[0]["Day Ten Rain"].toFixed(1)}%
+            </p>
+            </div>
+          </div>
+        </div>        */}
       </div>
     </div>
   );
