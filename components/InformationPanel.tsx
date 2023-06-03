@@ -206,7 +206,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
             <p className="text-right font-extralight text-xs md:text-lg">
               {weatherCodeToString[results.current_weather.weathercode].label}
             </p>
-            <div className="md:flex-1 text-right">
+            <div className="xs:flex-1 text-right">
             <p className="text-xs">
               {/* update the line that displays the "Feels like" temperature 
                   to use the appropriate value from the data array */}
