@@ -91,18 +91,25 @@ function InformationPanel({ city, lat, long, results }: Props) {
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
     "Feels like": results?.hourly.apparent_temperature?.[currentHour + i],
-    "Tomorrow's Max": results?.hourly.apparent_temperature?.[currentHour + i] + 24,
-    "Day Two's Max": results?.daily.apparent_temperature_max?.[currentHour + i] + 48,
-    "Day Three's Max": results?.daily.apparent_temperature_max?.[currentHour + i] + 73,
-    "Day Four's Max": results?.daily.apparent_temperature_max?.[currentHour + i] + 97,
-    "Tomorrow's Min": results?.daily.apparent_temperature_min?.[currentHour + i] + 24,
-    "Day Two's Min": results?.daily.apparent_temperature_min?.[currentHour + i] + 24,
-    "Day Three's Min": results?.daily.apparent_temperature_min?.[currentHour + i] + 73,
-    "Day Four's Min": results?.daily.apparent_temperature_min?.[currentHour + i] + 97, 
-    "Tomorrow's Rain": results?.daily.precipitation_probability_max?.[currentHour + i] + 24,   
-    "Day Two's Rain": results?.daily.precipitation_probability_max?.[currentHour + i] + 48, 
-    "Day Three's Rain": results?.daily.precipitation_probability_max?.[currentHour + i] + 73, 
-    "Day Four's Rain": results?.daily.precipitation_probability_max?.[currentHour + i] + 97, 
+    "Current weather": results?.hourly.temperature_2m?.[currentHour + i],
+    "Tomorrows Max": results?.daily.temperature_2m_max?.[i + 1],
+    "Day Twos Max": results?.daily.temperature_2m_max?.[i + 2],
+    "Day Threes Max": results?.daily.temperature_2m_max?.[i + 3],
+    "Day Fours Max": results?.daily.temperature_2m_max?.[i + 4],
+    "Day Fives Max": results?.daily.temperature_2m_max?.[i + 5],
+    "Day Sixs Max": results?.daily.temperature_2m_max?.[i + 6],
+    "Tomorrows Min": results?.daily.temperature_2m_min?.[i + 1],
+    "Day Twos Min": results?.daily.temperature_2m_min?.[i + 2],
+    "Day Threes Min": results?.daily.temperature_2m_min?.[i + 3],
+    "Day Fours Min": results?.daily.temperature_2m_min?.[i + 4],
+    "Day Fives Min": results?.daily.temperature_2m_min?.[i + 5],
+    "Day Sixs Min": results?.daily.temperature_2m_min?.[i + 6],
+    "Tomorrows Rain": results?.daily.precipitation_probability_max?.[i + 1],  
+    "Day Twos Rain": results?.daily.precipitation_probability_max?.[i + 2], 
+    "Day Threes Rain": results?.daily.precipitation_probability_max?.[i + 3], 
+    "Day Fours Rain": results?.daily.precipitation_probability_max?.[i + 4],
+    "Day Fives Rain": results?.daily.precipitation_probability_max?.[i + 5], 
+    "Day Sixs Rain": results?.daily.precipitation_probability_max?.[i + 6],
     
   }));
   
@@ -163,7 +170,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
           />
           <div className="flex items-center justify-between space-x-10">
             <p className="text-3xl md:text-6xl font-semibold">
-              {results?.current_weather.temperature?.toFixed(1)}°F
+              {data[0]["Current weather"].toFixed(1)}°F
             </p>
 
             <p className="text-right font-extralight text-sm md:text-lg">
@@ -237,7 +244,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
           <hr className="mt-10 mb-5" />
         </div>
 
-        {/* <div className="text-sm pt-8">
+        <div className="text-sm pt-8">
           <h1 className="font-medium text-3xl py-3 text-amber-300">Forecast</h1>
         </div>
         <div className="flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]">
@@ -245,15 +252,15 @@ function InformationPanel({ city, lat, long, results }: Props) {
             <h2 className="text-base">{tomorrowFormatted}</h2>
             <p className="font-extralight">Max:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_max?.[1]?.toFixed(1)}°F
+            {data[0]["Tomorrows Max"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Min:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_min?.[1]?.toFixed(1)}°F
+            {data[0]["Tomorrows Min"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Rain:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.precipitation_probability_max?.[1]?.toFixed(1)}%
+            {data[0]["Tomorrows Rain"].toFixed(1)}%
             </p>
           </div>
         </div>
@@ -263,15 +270,15 @@ function InformationPanel({ city, lat, long, results }: Props) {
             <h2 className="text-base">{dayThreeFormatted}</h2>
             <p className="font-extralight">Max:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_max?.[2]?.toFixed(1)}°F
+            {data[0]["Day Twos Max"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Min:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_min?.[2]?.toFixed(1)}°F
+            {data[0]["Day Twos Min"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Rain:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.precipitation_probability_max?.[2]?.toFixed(1)}%
+            {data[0]["Day Twos Rain"].toFixed(1)}%
             </p>
           </div>
         </div>
@@ -281,15 +288,15 @@ function InformationPanel({ city, lat, long, results }: Props) {
             <h2 className="text-base">{dayFourFormatted}</h2>
             <p className="font-extralight">Max:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_max?.[3]?.toFixed(1)}°F
+            {data[0]["Day Threes Max"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Min:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_min?.[3]?.toFixed(1)}°F
+            {data[0]["Day Threes Min"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Rain:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.precipitation_probability_max?.[3]?.toFixed(1)}%
+            {data[0]["Day Threes Rain"].toFixed(1)}%
             </p>
           </div>
         </div>
@@ -299,15 +306,15 @@ function InformationPanel({ city, lat, long, results }: Props) {
             <h2 className="text-base">{dayFiveFormatted}</h2>
             <p className="font-extralight">Max:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_max?.[4]?.toFixed(1)}°F
+            {data[0]["Day Fours Max"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Min:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_min?.[4]?.toFixed(1)}°F
+            {data[0]["Day Fours Min"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Rain:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.precipitation_probability_max?.[4]?.toFixed(1)}%
+            {data[0]["Day Fours Rain"].toFixed(1)}%
             </p>
           </div>
         </div>
@@ -317,15 +324,15 @@ function InformationPanel({ city, lat, long, results }: Props) {
             <h2 className="text-base">{daySixFormatted}</h2>
             <p className="font-extralight">Max:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_max?.[5]?.toFixed(1)}°F
+            {data[0]["Day Fives Max"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Min:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_min?.[5]?.toFixed(1)}°F
+            {data[0]["Day Fives Min"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Rain:</p>
-            <p className="uppercaseg">
-              {results?.daily.precipitation_probability_max?.[5]?.toFixed(1)}%
+            <p className="uppercase font-semibold">
+            {data[0]["Day Fives Rain"].toFixed(1)}%
             </p>
           </div>
         </div>
@@ -335,18 +342,18 @@ function InformationPanel({ city, lat, long, results }: Props) {
             <h2 className="text-base">{daySevenFormatted}</h2>
             <p className="font-extralight">Max:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_max?.[6]?.toFixed(1)}°F
+            {data[0]["Day Sixs Max"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Min:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.temperature_2m_min?.[6]?.toFixed(1)}°F
+            {data[0]["Day Sixs Min"].toFixed(1)}°F
             </p>
             <p className="font-extralight">Rain:</p>
             <p className="uppercase font-semibold">
-              {results?.daily.precipitation_probability_max?.[6]?.toFixed(1)}%
+            {data[0]["Day Sixs Rain"].toFixed(1)}%
             </p>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
