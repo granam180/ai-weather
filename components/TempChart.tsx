@@ -26,7 +26,7 @@ function TempChart({ results }: Props) {
   }));
 
 
-  const dataFormatter = (number: number) => `${number}`;
+  const dataFormatter = (number: number) => `${number}`; 
 
   // const dataFormatter = (number: number) => {
   //   const hours = Math.floor(number);
@@ -46,7 +46,7 @@ function TempChart({ results }: Props) {
         colors={["orange", "amber", "yellow"]}
         minValue={1}
         valueFormatter={dataFormatter}
-        yAxisWidth={40}
+        yAxisWidth={50}
       />
       <hr className="mt-6 mb-6" />
       <Title>Tomorrow&apos;s Temp</Title>
@@ -58,7 +58,7 @@ function TempChart({ results }: Props) {
         colors={["teal", "cyan", "sky"]}
         minValue={1}
         valueFormatter={dataFormatter}
-        yAxisWidth={40}
+        yAxisWidth={50}
       />    
     </Card>
   );

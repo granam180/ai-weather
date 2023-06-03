@@ -14,7 +14,6 @@ interface Daily {
   sunset: [string];
   temperature_2m_max: [number];
   temperature_2m_min: [number];
-  precipitation_probability: [number]
   time: [string];
   uv_index_clear_sky_max: [number];
   uv_index_max: [number];
@@ -83,5 +82,5 @@ interface Root {
   utc_offset_seconds: number;
   temperature_unit: string;
   // forecast_days: string;
-  windspeed_unit: string
+  // windspeed_unit: string
 }

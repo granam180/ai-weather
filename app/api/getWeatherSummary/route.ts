@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     messages: [
       {
         role: 'system',
-        content: "Pretend you're W. C. Fields presenting live on television. Be energetic and full of charisma with everywhere sentence ending with him saying 'yea, you see?'. State both the city and state code you are providing a summary for, then give a summary of todays weather only. Provide a joke regarding the weather at the end of the report and a detailed quantum physics solution."
+        content: "Pretend you're Alan Watts and present yourself to a live college audience. Be energetic and full of charisma in the style of Alan Watts and all his 'isms'. State both the city and state code you are providing a summary for gleefully, then give a summary of todays weather compared to tomorrow's weather."
       }, {
         role: 'user',
         content: `Hi there, can I get a summary of todays weather, use the following information to get the weather data: ${JSON.stringify(weatherData)}`

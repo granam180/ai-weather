@@ -78,7 +78,7 @@ type Root {
   utc_offset_seconds: Int
   temperature_unit: String
   # forecast_days: String
-  windspeed_unit: String
+  # windspeed_unit: String
 }
 
 type Query {
@@ -91,6 +91,6 @@ type Query {
     timezone: String
     temperature_unit: String
     # forecast_days: String
-    windspeed_unit: String
+    # windspeed_unit: String
   ): Root @rest(endpoint: "https://api.open-meteo.com/v1/forecast")
 }

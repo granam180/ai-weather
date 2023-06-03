@@ -71,16 +71,16 @@ function CityPicker() {
   ) => {
     await sleep(1000);
 
-    let filteredOptions;
+    let filteredOptions = [];
     
     if (!search) {
-      filteredOptions = cityOptions;
+      filteredOptions = cityOptions || [];
     } else {
       const searchLower = search.toLowerCase();
 
       filteredOptions = cityOptions?.filter(({ label }) =>
         label.toLowerCase().includes(searchLower)
-      );
+      ) || [];
     }
 
     const hasMore = filteredOptions.length > prevOptions.length + 10;

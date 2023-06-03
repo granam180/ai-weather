@@ -19,6 +19,7 @@ function HumidityChart({ results }: Props) {
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
     "Humidity (%)": results.hourly.relativehumidity_2m[i],
+    "Tomorrow's Humidity (%)": results.hourly.relativehumidity_2m[i + 24],
   }));
 
   const dataFormatter = (number: number) => `${number} %`;
@@ -38,6 +39,19 @@ function HumidityChart({ results }: Props) {
         valueFormatter={dataFormatter}
         yAxisWidth={40}
       />
+      <Title>Tomorrow&apos;s Levels</Title>
+      <AreaChart
+        className="mt-6"
+        data={data}
+        showLegend
+        index="time"
+        categories={["Tomorrow's Humidity (%)"]}
+        colors={["yellow"]}
+        minValue={0}
+        maxValue={100}
+        valueFormatter={dataFormatter}
+        yAxisWidth={40}
+      />      
     </Card>
   );
 }

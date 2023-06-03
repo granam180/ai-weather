@@ -11,7 +11,7 @@ import cleanData from "@/lib/cleanData";
 import WindChart from "@/components/WindChart";
 
 // incremental static regeneration (ISR)
-export const revalidate = 60;
+export const revalidate = 1440;
 
 type Props = {
   params: {
@@ -29,7 +29,8 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
     variables: {
       current_weather: "true",
       temperature_unit: "fahrenheit",
-      windspeed_unit: "ms",
+      // windspeed_unit: "ms",
+      // forecast_days: "7",
       longitude: long,
       latitude: lat,
       timezone: "EST",
