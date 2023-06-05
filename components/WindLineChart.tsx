@@ -1,13 +1,13 @@
 "use client";
 
-import { Card, AreaChart, Title } from "@tremor/react";
+import { Card, AreaChart, Title, LineChart } from "@tremor/react";
 import CalloutCard from "./CalloutCard";
 
 type Props = {
   results: Root;
 };
 
-function WindChart({ results }: Props) {
+function WindLineChart({ results }: Props) {
   // Add a variable to get the current hour:
   const currentHour = new Date().getHours();
 
@@ -23,8 +23,8 @@ function WindChart({ results }: Props) {
 
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
-    "Wind (m/s)": results.hourly.windgusts_10m[currentHour + i],
-    "Tomorrow's Wind (m/s)": results.hourly.windgusts_10m[i + 24],
+    "Today": results?.hourly.windgusts_10m?.[currentHour + i],
+    "Tomorrow": results?.hourly.windgusts_10m?.[i + 1],
   }));
 
   const dataFormatter = (number: number) => `${number} m/s`;
@@ -33,28 +33,13 @@ function WindChart({ results }: Props) {
     <div>
       <Card>
         <Title>Wind Speeds</Title>
-        <AreaChart
+        <LineChart
           className="mt-6"
           data={data}
           showLegend
           index="time"
-          categories={["Wind (m/s)"]}
-          colors={["sky"]}
-          minValue={0}
-          // maxValue={100}
-          valueFormatter={dataFormatter}
-          yAxisWidth={50}
-        />
-      </Card>
-      <Card>
-        <Title>Tomorrow&apos;s Speeds</Title>
-        <AreaChart
-          className="mt-6"
-          data={data}
-          showLegend
-          index="time"
-          categories={["Tomorrow's Wind (m/s)"]}
-          colors={["cyan"]}
+          categories={["Today", "Tomorrow"]}
+          colors={["rose", "blue"]}
           minValue={0}
           // maxValue={100}
           valueFormatter={dataFormatter}
@@ -65,4 +50,4 @@ function WindChart({ results }: Props) {
   );
 }
 
-export default WindChart;
+export default WindLineChart;

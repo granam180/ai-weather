@@ -9,6 +9,7 @@ import HumidityChart from "@/components/HumidityChart";
 import getBasePath from "@/lib/getBasePath";
 import cleanData from "@/lib/cleanData";
 import WindChart from "@/components/WindChart";
+import WindLineChart from "@/components/WindLineChart";
 
 // incremental static regeneration (ISR)
 export const revalidate = 1440;
@@ -29,11 +30,11 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
     variables: {
       current_weather: "true",
       temperature_unit: "fahrenheit",
-      // windspeed_unit: "ms",
-      // forecast_days: "7",
+      windspeed_unit: "ms",
+      forecast_days: "16",
       longitude: long,
       latitude: lat,
-      timezone: "EST",
+      timezone: "auto",
     },
   });
 
@@ -97,7 +98,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
                 color="green"
               />
 
-              <div>
+              <div className="flex space-x-4">
                 <StatCard
                   title="UV Index"
                   metric={`${results.daily.uv_index_max[0].toFixed(1)}`}
@@ -109,9 +110,14 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
                     warning
                   />
                 )}
+                <StatCard
+                  title="Visibility"
+                  metric={`${results?.hourly.visibility[0]?.toFixed(0)}m`}
+                  color="slate"
+                />                
               </div>
 
-              <div className="flex space-x-3">
+              <div className="flex space-x-2">
                 <StatCard
                   title="Wind Speed"
                   metric={`${results.current_weather.windspeed.toFixed(1)}m/s`}
@@ -130,7 +136,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
           <div className="space-y-3">
             <TempChart results={results}/>
             <RainChart results={results}/>
-            <WindChart results={results} />            
+            <WindLineChart results={results} />            
             <HumidityChart results={results} />
           </div>
         </div>

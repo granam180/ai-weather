@@ -5,25 +5,38 @@ export async function POST(request: Request) {
   // weatherdata in the  body of the POST req
   const { weatherData } = await request.json();
 
+  const currentTime = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+    timeZone: "America/New_York", // Set the timezone to EST
+  });
+
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
-    temperature: 0.8,
+    temperature: 0.6,
     n: 1,
     stream: false,
     messages: [
       {
         role: 'system',
-        content: "Pretend you're Alan Watts and present yourself to a live college audience. Be energetic and full of charisma in the style of Alan Watts and all his 'isms'. State both the city and state code you are providing a summary for gleefully, then give a summary of todays weather compared to tomorrow's weather."
+        content: "Pretend you're rock star joeyB while presenting the weather. Then give a summary of todays weather compared to tomorrow's weather, and state both the city and state code you are providing a summary for. Conclude with an Alan Watts method on Eastern philosophy."
       }, {
         role: 'user',
-        content: `Hi there, can I get a summary of todays weather, use the following information to get the weather data: ${JSON.stringify(weatherData)}`
+        content: `Hello Chris, can I get a summary of todays weather, use the following information to get the weather data: ${JSON.stringify(weatherData)}`
+      }, {
+        role: 'system',
+        content: `Current date and time: ${currentTime}`
       }
     ]
   })
 
   const { data } = response;
 
-  console.log("DATA IS: ", data);
+  console.log("AI DATA IS: ", data);
 
   return NextResponse.json(data.choices[0].message);
 }

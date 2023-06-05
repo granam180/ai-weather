@@ -53,6 +53,8 @@ interface Hourly {
   uv_index: [number];
   uv_index_clear_sky: [number];
   windgusts_10m: [number];
+  visibility: [number];
+  weathercode: [number];
 }
 
 interface HourlyUnits {
@@ -69,6 +71,8 @@ interface HourlyUnits {
   uv_index: string;
   uv_index_clear_sky: string;
   windgusts_10m: string;
+  visibility: string;
+  weathercode: string;  
 }
 
 interface Root {
@@ -85,6 +89,6 @@ interface Root {
   timezone_abbreviation: string;
   utc_offset_seconds: number;
   temperature_unit: string;
-  // forecast_days: string;
-  // windspeed_unit: string;
+  forecast_days: string;
+  windspeed_unit: string;
 }

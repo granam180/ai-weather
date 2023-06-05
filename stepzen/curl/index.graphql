@@ -51,6 +51,8 @@ type Hourly {
   uv_index: [Float]
   uv_index_clear_sky: [Float]
   windgusts_10m: [Float]
+  visibility: [Int]
+  weathercode: [Int]
 }
 type HourlyUnits {
   apparent_temperature: String
@@ -66,6 +68,9 @@ type HourlyUnits {
   uv_index: String
   uv_index_clear_sky: String
   windgusts_10m: String
+  visibility: String
+  weathercode: String 
+  
 }
 type Root {
   current_weather: CurrentWeather
@@ -81,8 +86,8 @@ type Root {
   timezone_abbreviation: String
   utc_offset_seconds: Int
   temperature_unit: String
-  # forecast_days: String
-  # windspeed_unit: String
+  forecast_days: String
+  windspeed_unit: String
 }
 
 type Query {
@@ -94,7 +99,7 @@ type Query {
     longitude: String
     timezone: String
     temperature_unit: String
-    # forecast_days: String
-    # windspeed_unit: String
+    forecast_days: String
+    windspeed_unit: String
   ): Root @rest(endpoint: "https://api.open-meteo.com/v1/forecast")
 }
