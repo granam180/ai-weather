@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, AreaChart, Title } from "@tremor/react";
+import { Card, AreaChart, Title, LineChart } from "@tremor/react";
 
 type Props = {
   results: Root;
@@ -13,15 +13,15 @@ function HumidityChart({ results }: Props) {
       new Date(time).toLocaleString("en-US", {
         hour: "numeric",
         hour12: false,
-        timeZone: "America/New_York", // Set the timezone to EST
       })
     )
     .slice(currentHour, currentHour + 24);
 
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
-    "Humidity (%)": results.hourly.relativehumidity_2m[currentHour + i],
-    "Tomorrow's Humidity (%)": results.hourly.relativehumidity_2m[i + 1],
+    "Today": results.hourly.relativehumidity_2m[currentHour + i],
+    "Tomorrow": results.hourly.relativehumidity_2m[currentHour + i + 24],
+    "Next Day": results.hourly.relativehumidity_2m[currentHour + i + 48],
   }));
 
   const dataFormatter = (number: number) => `${number} %`;
@@ -29,29 +29,14 @@ function HumidityChart({ results }: Props) {
   return (
     <div>
       <Card>
-        <Title>Tomorrow&apos;s Levels</Title>
-        <AreaChart
-          className="mt-6"
-          data={data}
-          showLegend
-          index="time"
-          categories={["Tomorrow's Humidity (%)"]}
-          colors={["yellow"]}
-          minValue={0}
-          maxValue={100}
-          valueFormatter={dataFormatter}
-          yAxisWidth={40}
-        />
-      </Card>
-      <Card>
         <Title>Humidity Levels</Title>
-        <AreaChart
+        <LineChart
           className="mt-6"
           data={data}
           showLegend
           index="time"
-          categories={["Humidity (%)"]}
-          colors={["teal"]}
+          categories={["Today", "Tomorrow", "Next Day"]}
+          colors={["yellow", "teal"]}
           minValue={0}
           maxValue={100}
           valueFormatter={dataFormatter}

@@ -16,7 +16,7 @@ function WindChart({ results }: Props) {
       new Date(time).toLocaleString("en-US", {
         hour: "numeric",
         hour12: false,
-        timeZone: "America/New_York", // Set the timezone to EST
+        // timeZone: "America/New_York", // Set the timezone to EST
       })
     )
     .slice(currentHour, currentHour + 24);
@@ -24,7 +24,7 @@ function WindChart({ results }: Props) {
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
     "Wind (m/s)": results.hourly.windgusts_10m[currentHour + i],
-    "Tomorrow's Wind (m/s)": results.hourly.windgusts_10m[i + 24],
+    "Tomorrow's Wind (m/s)": results.hourly.windgusts_10m[currentHour + i + 24],
   }));
 
   const dataFormatter = (number: number) => `${number} m/s`;

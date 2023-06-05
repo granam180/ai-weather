@@ -13,7 +13,7 @@ function TempChart({ results }: Props) {
       new Date(time).toLocaleString("en-US", {
         hour: "numeric",
         hour12: false,
-        timeZone: "America/New_York", // Set the timezone to EST
+        // timeZone: "America/New_York", // Set the timezone to EST
       })
     )
     .slice(currentHour, currentHour + 24);
@@ -23,9 +23,9 @@ function TempChart({ results }: Props) {
     "Temperature (F)": results.hourly.temperature_2m[currentHour + i],
     "Feels like": results.hourly.apparent_temperature[currentHour + i],
     "UV Index": results.hourly.uv_index[currentHour + i],
-    "Temperature (F) Tomorrow": results.hourly.temperature_2m[i + 24],
-    "Feels like Tomorrow": results.hourly.apparent_temperature[i + 24],
-    "UV Index Tomorrow": results.hourly.uv_index[i + 24],
+    "Tomorrow's Temperature (F)": results.hourly.temperature_2m[currentHour + i + 24],
+    "Tomorrow's Feels like": results.hourly.apparent_temperature[currentHour + i + 24],
+    "Tomorrow's UV Index": results.hourly.uv_index[currentHour + i + 24],
   }));
 
   const dataFormatter = (number: number) => `${number}`;
@@ -59,9 +59,9 @@ function TempChart({ results }: Props) {
           data={data}
           index="time"
           categories={[
-            "Feels like Tomorrow",
-            "Temperature (F) Tomorrow",
-            "UV Index Tomorrow",
+            "Tomorrow's Feels like",
+            "Tomorrow's Temperature (F)",
+            "Tomorrow's UV Index",
           ]}
           colors={["teal", "sky", "cyan"]}
           minValue={1}

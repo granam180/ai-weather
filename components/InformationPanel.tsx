@@ -137,7 +137,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
       new Date(time).toLocaleString("en-US", {
         hour: "numeric",
         hour12: false,
-        timeZone: "America/New_York", // Set the timezone to EST
+        // timeZone: "America/New_York", // Set the timezone to EST
       })
     )
     .slice(currentHour, currentHour + 24);
@@ -279,7 +279,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
               {results.current_weather.windspeed.toFixed(1)}m/s
             </p>
           </div>
-          <hr className="mt-10 mb-5" />
+          {/* <hr className="mt-10 mb-5" /> */}
         </div>
 
           <div className="text-sm py-1">
@@ -287,7 +287,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
               10-Day Forecast
             </h1>
           </div>
-        <section>          
+        <div>          
           <div className="flex items-center space-x-2 mb-2 px-7 py-4 border border-[#6F90CD] rounded-md bg-[#405885]">
             <div className="flex-1 flex justify-between items-center text-xs">
               <h2 className="md:text-base text-sm">{tomorrowFormatted}</h2>
@@ -599,7 +599,7 @@ function InformationPanel({ city, lat, long, results }: Props) {
           </div>
         </div>                                      
          */}
-        </section>
+        </div>
       </div>
     </div>
   );

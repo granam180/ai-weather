@@ -16,7 +16,7 @@ function WindLineChart({ results }: Props) {
       new Date(time).toLocaleString("en-US", {
         hour: "numeric",
         hour12: false,
-        timeZone: "America/New_York", // Set the timezone to EST
+        // timeZone: "America/New_York", // Set the timezone to EST
       })
     )
     .slice(currentHour, currentHour + 24);
@@ -24,7 +24,8 @@ function WindLineChart({ results }: Props) {
   const data = hourly.map((hour, i) => ({
     time: Number(hour),
     "Today": results?.hourly.windgusts_10m?.[currentHour + i],
-    "Tomorrow": results?.hourly.windgusts_10m?.[i + 1],
+    "Tomorrow": results?.hourly.windgusts_10m?.[currentHour + i + 24],
+    "Three": results?.hourly.windgusts_10m?.[currentHour + i + 48],
   }));
 
   const dataFormatter = (number: number) => `${number} m/s`;
@@ -38,8 +39,8 @@ function WindLineChart({ results }: Props) {
           data={data}
           showLegend
           index="time"
-          categories={["Today", "Tomorrow"]}
-          colors={["rose", "blue"]}
+          categories={["Today", "Tomorrow", "Three"]}
+          colors={["blue", "orange", "fuchsia"]}
           minValue={0}
           // maxValue={100}
           valueFormatter={dataFormatter}

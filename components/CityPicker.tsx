@@ -10,16 +10,17 @@ import type { GroupBase, OptionsOrGroups } from "react-select";
 
 type countryOption = {
   value: {
-    latitude: string;
-    longitude: string;
-    isoCode: string;
+    latitude: string,
+    longitude: string,
+    isoCode: string,
+    name: string,
   };
   label: string;
 } | null;
 
 type stateOption = {
   value: {
-    latitide: string | null | undefined,
+    latitude: string | null | undefined,
     longitude: string | null | undefined,
     isoCode: string,
     countryCode: string,
@@ -30,11 +31,11 @@ type stateOption = {
 
 type cityOption = {
   value: {
-    latitude: string;
-    longitude: string;
-    countryCode: string;
-    name: string;
-    stateCode: string;
+    latitude: string | null | undefined,
+    longitude: string | null | undefined,
+    countryCode: string,
+    name: string,
+    stateCode: string,
   };
   label: string;
 } | undefined | null;
@@ -44,6 +45,7 @@ const countryOptions = Country.getAllCountries().map((country) => ({
     latitude: country.latitude,
     longitude: country.longitude,
     isoCode: country.isoCode,
+    name: country.name,
   },
   label: country.name,
 }));
@@ -65,10 +67,10 @@ const CountriesWithStates = new Set<String>([
   "US",
 ]);
 
-function CityPicker() {
+const CityPicker = () => {
   const [selectedCountry, setSelectedCountry] = useState<countryOption>(null);
-  const [selectedState, setSelectedState] = useState<stateOption>(null);
   const [selectedCity, setSelectedCity] = useState<cityOption>(null);
+  const [selectedState, setSelectedState] = useState<stateOption>(null);
   const isCountryWithState = CountriesWithStates.has(selectedCountry?.value?.isoCode || '');
 
   const router = useRouter();
@@ -130,17 +132,17 @@ function CityPicker() {
     setSelectedCountry(option);
     setSelectedCity(null);
     setSelectedState(null);
-  };
+  }
 
   const handleSelectedState = (option: stateOption) => {
     setSelectedState(option);
     setSelectedCity(null);
-  };
+  }
 
   const handleSelectedCity = (option: cityOption) => {
     setSelectedCity(option);
     router.push(`/location/${option?.value.name}/${option?.value.latitude}/${option?.value.longitude}`)
-  };
+  }
 
 
   const getStateOptions = (): any[] => {
@@ -167,7 +169,7 @@ function CityPicker() {
     }
     return options.map(city => ({
       value: {
-        latitide: city.latitude,
+        latitude: city.latitude,
         longitude: city.longitude,
         countryCode: city.countryCode,
         name: city.name,
