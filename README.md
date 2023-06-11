@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# StepZen Weather AI App
+
+A Stepzen Weather AI App using the chatGPT API.
+*Development in-process.*
+
+Check out a live [demo](https://ai-weather-app-kappa.vercel.app/).
+
+<!-- ![dev](./public/images/Weather-AI-App.png) -->
+<!-- ![architecture](./public/images/tech1.png)
+![architecture](./public/images/tech2.png) -->
+
+### Development:
+<!-- - [Nix](https://nixos.org/) package manager - version control [Nix Flakes](https://nixos.wiki/wiki/Flakes) -->
+- [Next.js](https://nextjs.org/) as package manager
+- [TypeScript](https://www.typescriptlang.org/) - scalable, reliable web dev language
+- [React](https://react.dev/) - web library
+- [StepZen](https://stepzen.com/) is a GraphQL server with a unique architecture.
+- [Free Weather API](https://open-meteo.com/)
+- [Weather API Icons](https://www.weatherbit.io/)
+- [Tremor](https://www.tremor.so/) for stylized components
+- [Tailwind CSS](https://tailwindcss.com/)
+
+<!-- This project is built using [Nix](https://nixos.org/) package manager; spcifically [Nix Flakes](https://nixos.wiki/wiki/Flakes) for a reliable, reproducible build by adding a lock file concept to the project. I used [Next.js](https://nextjs.org/) as the package manager for this project. [TypeScript](https://www.typescriptlang.org/) more reliable, maintainable, and scalable code for web applications.  -->
+
 
 ## Getting Started
 
-First, run the development server:
+### Create '.env' at the root of your project and include the following environment variables:
+
+API_URL=
+NEXT_PUBLIC_STEPZEN_API_KEY=
+OPENAI_API_KEY=
+NODE_ENV=
+VERCEL_URL=
+
+### Frontend
+First, install packages and run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+yarn
+yarn run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Backend
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run the backend server, run the following command in a seperate terminal.
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
+```bash
+start-stepzen
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Open the `localhost:5001` with your browser to see the result.
 
-## Learn More
+## Walkthrough
+The landing page will have an seletion for `Country`, (optionally `State`), and `City`.
 
-To learn more about Next.js, take a look at the following resources:
+![Home Page](./public/images/homepage_saiw.gif)
+<p style="text-align: center;">Landing Page</p>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Once the city of choice has been selected, the request is posted and the client will be directed to a page with the corresponding city weather information (e.g. example shown below). The information panel allows the client to change cities. The selected city displays the local time, sunruse, sunset, and collection of other metrics.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![desktop view](./public/images/desktop_resp.gif)
+<p style="text-align: center;">Desktop View & Responsive</p>
 
-## Deploy on Vercel
+This application is mobile responsive. The example is shown below.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![mobile view](./public/images/mobile_view.gif)
