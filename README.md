@@ -18,7 +18,7 @@ Check out a live [demo](https://ai-weather-app-kappa.vercel.app/).
 
 ## Getting Started
 
-### Create '.env' at the root of your project and include the following environment variables:
+## Create '.env' at the root of your project and include the following environment variables:
 
 - API_URL=
 - NEXT_PUBLIC_STEPZEN_API_KEY=
